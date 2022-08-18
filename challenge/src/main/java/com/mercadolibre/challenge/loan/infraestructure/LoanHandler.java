@@ -1,5 +1,6 @@
 package com.mercadolibre.challenge.loan.infraestructure;
 
+import com.mercadolibre.challenge.category.application.response.CategoryResponse;
 import com.mercadolibre.challenge.loan.application.request.LoanBetweenDatesRequest;
 import com.mercadolibre.challenge.loan.application.request.LoanRequest;
 import com.mercadolibre.challenge.loan.application.response.LoanBetweenDatesResponse;
@@ -8,6 +9,9 @@ import com.mercadolibre.challenge.loan.application.response.LoanListByUserRespon
 import com.mercadolibre.challenge.loan.application.response.LoanResponse;
 import com.mercadolibre.challenge.loan.domain.models.Loan;
 import com.mercadolibre.challenge.loan.domain.services.LoanService;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -28,6 +32,9 @@ public class LoanHandler {
         this.loanService = loanService;
     }
 
+    @Operation(summary = "Creacion de un nuevo prestamo")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Success",response = LoanResponse.class)})
     @PostMapping("/new")
     public ResponseEntity<LoanResponse> createRequestLoan(@RequestBody LoanRequest request){
 
@@ -40,6 +47,9 @@ public class LoanHandler {
         }
 
     }
+    @Operation(summary = "Obtener deuda por id de prestamo")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Success",response = LoanDebtResponse.class)})
     @PostMapping("/debt/{loan_id}")
     public ResponseEntity<LoanDebtResponse> getDebt(@PathVariable long loan_id){
         LoanDebtResponse response = loanService.getDebtByLoan(loan_id);
@@ -52,6 +62,9 @@ public class LoanHandler {
 
     }
 
+    @Operation(summary = "Obtener lista de prestamos por id de usuario")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Success",response = LoanListByUserResponse.class)})
     @PostMapping("/user/{user_id}")
     public ResponseEntity<List<LoanListByUserResponse>> getLoansByUser(@PathVariable long user_id){
 
@@ -63,7 +76,9 @@ public class LoanHandler {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
-
+    @Operation(summary = "Obtener lista de prestamos entre rango de fechas y por id de usuario")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Success",response = LoanBetweenDatesResponse.class)})
     @PostMapping("/user/between/{userId}")
     public ResponseEntity<List<LoanBetweenDatesResponse>> getLoansByDate(@PathVariable Long userId, @RequestBody LoanBetweenDatesRequest request){
 
@@ -76,6 +91,9 @@ public class LoanHandler {
         }
     }
 
+    @Operation(summary = "Obtener lista de prestamos por id de usuario y por target")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Success",response = LoanDebtResponse.class)})
     @PostMapping("/user/{user_id}/{target}")
     public ResponseEntity<LoanDebtResponse> getTotalDebtByTarget(@PathVariable long user_id,@PathVariable String target){
 

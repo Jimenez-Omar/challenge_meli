@@ -2,6 +2,9 @@ package com.mercadolibre.challenge.user.infraestructure;
 
 import com.mercadolibre.challenge.user.domain.models.User;
 import com.mercadolibre.challenge.user.domain.services.UserService;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +24,9 @@ public class UserHandler {
         this.userService = userService;
     }
 
+    @Operation(summary = "Obtener lista de usuarios")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Success",response = User.class)})
     @GetMapping("/list")
     private ResponseEntity<List<User>> listCategory(){
 
