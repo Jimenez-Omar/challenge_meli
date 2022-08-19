@@ -23,12 +23,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/category/new",
-							"protocol": "http",
+							"raw": "ec2-52-91-97-183.compute-1.amazonaws.com/category/new",
 							"host": [
-								"localhost"
+								"ec2-52-91-97-183",
+								"compute-1",
+								"amazonaws",
+								"com"
 							],
-							"port": "8080",
 							"path": [
 								"category",
 								"new"
@@ -55,12 +56,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/category/list",
-							"protocol": "http",
+							"raw": "ec2-52-91-97-183.compute-1.amazonaws.com/category/list",
 							"host": [
-								"localhost"
+								"ec2-52-91-97-183",
+								"compute-1",
+								"amazonaws",
+								"com"
 							],
-							"port": "8080",
 							"path": [
 								"category",
 								"list"
@@ -84,12 +86,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/category/update/1",
-							"protocol": "http",
+							"raw": "ec2-52-91-97-183.compute-1.amazonaws.com/category/update/1",
 							"host": [
-								"localhost"
+								"ec2-52-91-97-183",
+								"compute-1",
+								"amazonaws",
+								"com"
 							],
-							"port": "8080",
 							"path": [
 								"category",
 								"update",
@@ -119,12 +122,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/loan/new",
-							"protocol": "http",
+							"raw": "ec2-52-91-97-183.compute-1.amazonaws.com/loan/new",
 							"host": [
-								"localhost"
+								"ec2-52-91-97-183",
+								"compute-1",
+								"amazonaws",
+								"com"
 							],
-							"port": "8080",
 							"path": [
 								"loan",
 								"new"
@@ -139,12 +143,13 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/loan/debt/1",
-							"protocol": "http",
+							"raw": "ec2-52-91-97-183.compute-1.amazonaws.com/loan/debt/1",
 							"host": [
-								"localhost"
+								"ec2-52-91-97-183",
+								"compute-1",
+								"amazonaws",
+								"com"
 							],
-							"port": "8080",
 							"path": [
 								"loan",
 								"debt",
@@ -161,12 +166,13 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/loan/user/7",
-							"protocol": "http",
+							"raw": "ec2-52-91-97-183.compute-1.amazonaws.com/loan/user/7",
 							"host": [
-								"localhost"
+								"ec2-52-91-97-183",
+								"compute-1",
+								"amazonaws",
+								"com"
 							],
-							"port": "8080",
 							"path": [
 								"loan",
 								"user",
@@ -191,17 +197,41 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/loan/user/between/7",
-							"protocol": "http",
+							"raw": "ec2-52-91-97-183.compute-1.amazonaws.com/loan/user/between/7",
 							"host": [
-								"localhost"
+								"ec2-52-91-97-183",
+								"compute-1",
+								"amazonaws",
+								"com"
 							],
-							"port": "8080",
 							"path": [
 								"loan",
 								"user",
 								"between",
 								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar_prestamos_por_usuario_y_target",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "ec2-52-91-97-183.compute-1.amazonaws.com/loan/user/7/PREMIUM",
+							"host": [
+								"ec2-52-91-97-183",
+								"compute-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"loan",
+								"user",
+								"7",
+								"PREMIUM"
 							]
 						}
 					},
@@ -227,12 +257,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/payment/new/1",
-							"protocol": "http",
+							"raw": "ec2-52-91-97-183.compute-1.amazonaws.com/payment/new/1",
 							"host": [
-								"localhost"
+								"ec2-52-91-97-183",
+								"compute-1",
+								"amazonaws",
+								"com"
 							],
-							"port": "8080",
 							"path": [
 								"payment",
 								"new",
@@ -254,12 +285,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/user/list",
-							"protocol": "http",
+							"raw": "ec2-52-91-97-183.compute-1.amazonaws.com/user/list",
 							"host": [
-								"localhost"
+								"ec2-52-91-97-183",
+								"compute-1",
+								"amazonaws",
+								"com"
 							],
-							"port": "8080",
 							"path": [
 								"user",
 								"list"
