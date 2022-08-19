@@ -1,50 +1,82 @@
 # RETO TECNICO BACKEND - JAVA
-#MERCADOLIBRE
+![Clean Architecture](logos.png)
 
 ## Antes de Iniciar
 
-Empezaremos por explicar los diferentes componentes del proyectos y partiremos de los componentes externos, continuando con los componentes core de negocio (dominio) y por �ltimo el inicio y configuraci�n de la aplicaci�n.
+El proyecto se desarrollo usado arquitectura hexagonal ("quien eres que tipo"), se compone de 4 casos de uso cada uno con su respectiva carpeta de dominio, application e infraestructura desplegado en AWS a traves de un EC2.
 
-Lee el art�culo [Clean Architecture � Aislando los detalles](https://medium.com/bancolombia-tech/clean-architecture-aislando-los-detalles-4f9530f35d7a)
+Github del proyecto [github](https://github.com/Jimenez-Omar/challenge_meli)
 
 # MODELADO DE BASE DE DATOS
 
-challenge/BD.png
+![Clean Architecture](BD.png)
 
-## Domain
+## Category
 
-Es el m�dulo m�s interno de la arquitectura, pertenece a la capa del dominio y encapsula la l�gica y reglas del negocio mediante modelos y entidades del dominio.
+Este caso de uso se encarga de controlar la creacion, actualizacion y listado de los targes a traves de los siguientes end-points:
 
-## Usecases
+#### * /category/new: permite crear un target o categoria
+#### METHOD: POST
+#### BODY => {
+    "name": "PREMIUM",
+    "rate": 0.05,
+    "max": 5000000
+}
+#### * /category/update/id_target: permite actualizar una categoria o target en base al id de la misma
+#### METHOD: POST
+#### BODY =>    {
+        "name": "NEW",
+        "rate": 0.20,
+        "max": 500000
+    }
+#### * /category/list: permite listar todas las categorias o targets creados
+#### METHOD: GET
+#### BODY => No Aplica
 
-Este m�dulo gradle perteneciente a la capa del dominio, implementa los casos de uso del sistema, define l�gica de aplicaci�n y reacciona a las invocaciones desde el m�dulo de entry points, orquestando los flujos hacia el m�dulo de entities.
+## Loans
 
-## Infrastructure
+Este caso de uso se encarga de la creacion de prestamos asi como de sus respectivas operacion de logica de negocio y expone los siguientes end-points:
 
-### Helpers
+#### * /loan/new: Permite crear un nuevo prestamo asociado a un usuario en particular
+#### METHOD: POST
+#### BODY => {
+    "amount":480000,
+    "term":12,
+    "user_id":8
+}
+#### * /loan/debt/id_prestamo: Permite Obtener lista de prestamos por id de usuario
+* #### METHOD: POST
+#### BODY => No Aplica
 
-En el apartado de helpers tendremos utilidades generales para los Driven Adapters y Entry Points.
+#### * /user/between/id_uduario: Permite Obtener lista de prestamos entre rango de fechas y por id de usuario
+#### METHOD: POST
+#### BODY => {
+    "from":"2022-08-17 23:43:06",
+    "to":"2022-08-17 23:45:41"
+}
+## Payment
 
-Estas utilidades no est�n arraigadas a objetos concretos, se realiza el uso de generics para modelar comportamientos
-gen�ricos de los diferentes objetos de persistencia que puedan existir, este tipo de implementaciones se realizan
-basadas en el patr�n de dise�o [Unit of Work y Repository](https://medium.com/@krzychukosobudzki/repository-design-pattern-bc490b256006)
+Este caso de uso se encarga de la creacion de pagos asociados a un prestamo en particular y lo hace a traves de un unico end-point.
+#### METHOD: POST
+* /payment/new/id_prestamo: Permite crear un pago asociado a un prestamo
+#### METHOD: POST
+#### BODY => { 
+    "amount":49000 
+}
 
-Estas clases no puede existir solas y debe heredarse su compartimiento en los **Driven Adapters**
+### Users
+Este caso de uso se encarga de controlar la visualizacion de los usuarios del sistema
 
-### Driven Adapters
+#### * /user/list: Lista todos los usuarios del sistema
 
-Los driven adapter representan implementaciones externas a nuestro sistema, como lo son conexiones a servicios rest,
-soap, bases de datos, lectura de archivos planos, y en concreto cualquier origen y fuente de datos con la que debamos
-interactuar.
+#### METHOD: POST
+#### BODY => No Aplica
 
-### Entry Points
 
-Los entry points representan los puntos de entrada de la aplicaci�n o el inicio de los flujos de negocio.
+## CLEAN ARCHITECTURE 
 
-## Application
+Este proyecto se creo usando arquitectura limpia siguiendo el patron de diseño de arquitectura hexagonal
 
-Este m�dulo es el m�s externo de la arquitectura, es el encargado de ensamblar los distintos m�dulos, resolver las dependencias y crear los beans de los casos de use (UseCases) de forma autom�tica, inyectando en �stos instancias concretas de las dependencias declaradas. Adem�s inicia la aplicaci�n (es el �nico m�dulo del proyecto donde encontraremos la funci�n �public static void main(String[] args)�.
+![Clean Architecture](Clean Architecture.png)
 
-**Los beans de los casos de uso se disponibilizan automaticamente gracias a un '@ComponentScan' ubicado en esta capa.**
-
-gradle ca --package=co.com.bancolombia.pac.authentication --type=reactive --name=ms-authentication --coverage=jacoco --lombok=true
+Para entender el porque decidi usar este patron, puede remitirse al siguiente video: [youtube](https://www.youtube.com/watch?v=y3MWfPDmVqo)
